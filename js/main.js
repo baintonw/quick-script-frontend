@@ -119,7 +119,7 @@ startBtn.addEventListener('click', function(e){
 
 // INITIALIZE GAME
 function init(){
-  time = 60
+  time = 10
   // Select quotes from a certain show from 'quotes' array
   // Append quote to DOM
   showQuote(quotes);
@@ -196,7 +196,7 @@ function checkStatus(){
         <br>
         <div class="input-group row">
           <div class="col-xs-2 mx-auto text-center form-inline">
-            <input type="text" id="save-user" placeholder="Name" class="form-control" autofocus>
+            <input type="text" id="save-user" placeholder="Name" class="form-control" autofocus required>
             <div class="input-group-append">
               <button id="save-button" type="button" class="btn btn-light">Save Score</button>
             </div>
@@ -227,8 +227,12 @@ function saveBtn(){
   const saveUserInput = document.querySelector('#save-user')
   saveBtn.addEventListener('click', () => {
     const username = saveUserInput.value
-    addUserToDB(username, score)
-    location.reload()
+    if(username === ""){
+      alert("Please enter your name!")
+    } else {
+      addUserToDB(username, score)
+      location.reload()
+    }
   })
 }
 
