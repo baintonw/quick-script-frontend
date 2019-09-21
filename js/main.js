@@ -1,5 +1,6 @@
 // ---- GLOBAL VARIABLES ----
 let time;
+let initTime = 10
 let score = 0;
 let isPlaying;
 const quotes = []
@@ -119,7 +120,7 @@ startBtn.addEventListener('click', function(e){
 
 // INITIALIZE GAME
 function init(){
-  time = 10
+  time = initTime
   // Select quotes from a certain show from 'quotes' array
   // Append quote to DOM
   showQuote(quotes);
@@ -153,6 +154,8 @@ function matchquotes(){
     wordInput.value = ''
     score++
     wpm++
+
+    // bonus points for finished phrase
 
     if(currentQuoteArray.length === 0){
       score += 10
@@ -206,7 +209,7 @@ function checkStatus(){
       <h1>Leaderboard</h1>
         <div>
           ${theScores}
-          WPM - ${wpm}
+          WPM - ${wpm * (60/initTime)}
         </div>
         <br>
 		  <button id="refresh" type="button" class="btn btn-light">Try Again</button>
